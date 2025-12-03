@@ -1,0 +1,31 @@
+# Environment Variables (Sensitive Data)
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# RAG Data & Indexes
+# Exclude uploaded documents to protect privacy
+data/*
+!data/.gitkeep
+
+# Exclude generated vector store (large binary files)
+faiss_index/*
+!faiss_index/.gitkeep
+
+# IDE Settings
+.vscode/
+.idea/
+
+# System Files
+.DS_Store
+Thumbs.db

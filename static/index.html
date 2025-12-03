@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG RFP Chatbot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Documents</h2>
+            </div>
+            <div class="upload-section">
+                <input type="file" id="file-input" multiple accept=".pdf,.docx,.xlsx" hidden>
+                <button id="upload-btn" class="btn primary-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    Upload Documents (.pdf, .docx, .xlsx)
+                </button>
+                <button id="ingest-btn" class="btn secondary-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                        </path>
+                    </svg>
+                    Process Docs
+                </button>
+            </div>
+            <div class="file-list" id="file-list">
+                <!-- Files will be listed here -->
+            </div>
+
+            <div class="settings-section">
+                <div class="settings-header">
+                    <h3>RAG Settings</h3>
+                </div>
+
+                <div class="setting-group">
+                    <label for="chunk-size">Chunk Size: <span id="chunk-size-val">1000</span></label>
+                    <input type="range" id="chunk-size" min="100" max="2000" step="100" value="1000">
+                </div>
+
+                <div class="setting-group">
+                    <label for="chunk-overlap">Overlap: <span id="chunk-overlap-val">200</span></label>
+                    <input type="range" id="chunk-overlap" min="0" max="500" step="50" value="200">
+                </div>
+
+                <div class="setting-group">
+                    <label for="top-k">Top K Results: <span id="top-k-val">5</span></label>
+                    <input type="range" id="top-k" min="1" max="10" step="1" value="5">
+                </div>
+
+                <div class="setting-group">
+                    <label for="temperature">Temperature: <span id="temperature-val">0.7</span></label>
+                    <input type="range" id="temperature" min="0" max="1" step="0.1" value="0.7">
+                </div>
+
+                <div class="setting-group checkbox-group">
+                    <label for="enable-evaluation">
+                        <input type="checkbox" id="enable-evaluation">
+                        <span>Enable Evaluation</span>
+                    </label>
+                    <p class="setting-hint">Show RAG quality metrics</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="chat-interface">
+            <div class="chat-header">
+                <h1>RAG RFP Chatbot</h1>
+                <p>Ask questions about your documents</p>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+                <div class="message system-message">
+                    <div class="message-content">
+                        Hello! Upload some RFP documents and process them to start chatting.
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <div class="input-wrapper">
+                    <textarea id="user-input" placeholder="Type your question here..." rows="1"></textarea>
+                    <button id="send-btn" class="send-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
