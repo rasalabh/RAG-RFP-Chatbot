@@ -29,10 +29,10 @@ class Colors:
 
 # Test queries
 TEST_QUERIES = [
-    "What are the supported SBC models with Avaya Infinity?",
-    "How is the 911 service priced with Avaya Infinity?",
-    "How does Advanced bundle compare to Essentials Voice bundle?",
-    "What languages are supported by Avaya Infinity modules?",
+    "Insert your query1 here",
+    "Insert your query2 here",
+    "Insert your query3 here",
+    "Insert your query4 here",
 ]
 
 def print_separator():
