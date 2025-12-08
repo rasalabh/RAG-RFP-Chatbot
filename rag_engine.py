@@ -243,17 +243,19 @@ class ImprovedRAGService:
         context = "\n---\n".join(context_parts)
         contexts_list = [doc.page_content for doc in reranked_docs]
         
-        # Extract sources with deduplication
+        # Extract sources with deduplication and source IDs
         sources = []
-        for doc in reranked_docs:
+        for i, doc in enumerate(reranked_docs, 1):
             source_info = {
+                "source_id": i,  # NEW: Add source ID for citation matching
                 "file": doc.metadata.get("source", "Unknown").split('\\')[-1].split('/')[-1],
                 "page": doc.metadata.get("page", "N/A"),
                 "preview": doc.metadata.get("preview", "")[:100]
             }
             sources.append(source_info)
         
-        sources = self._deduplicate_sources(sources)
+        # Note: We don't deduplicate here to preserve source_id mapping
+        # If Source 3 in answer maps to sources[2], deduplication would break this
         
         # IMPROVEMENT 7: Enhanced prompt with reasoning and citation instructions
         prompt_text = f"""You are a helpful AI assistant analyzing documents. Answer the question using ONLY the provided context sources.

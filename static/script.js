@@ -253,7 +253,14 @@ function addMessage(text, sender, isLoading = false, sources = null, evaluation 
             const sourceItem = document.createElement('div');
             sourceItem.className = 'source-item';
             const fileName = source.file.split('\\').pop().split('/').pop();
-            sourceItem.textContent = `${fileName} - Page ${source.page}`;
+
+            // UPDATED: Include source_id if present
+            if (source.source_id) {
+                sourceItem.innerHTML = `<strong>Source ${source.source_id}:</strong> ${fileName} - Page ${source.page}`;
+            } else {
+                sourceItem.textContent = `${fileName} - Page ${source.page}`;
+            }
+
             sourcesDiv.appendChild(sourceItem);
         });
 
@@ -286,6 +293,11 @@ function addMessage(text, sender, isLoading = false, sources = null, evaluation 
         // Answer Relevance
         if (metrics.answer_relevance) {
             evalDiv.appendChild(createMetricElement('Answer Relevance', metrics.answer_relevance));
+        }
+
+        // Citation Quality (if present)
+        if (metrics.citation_quality) {
+            evalDiv.appendChild(createMetricElement('Citation Quality', metrics.citation_quality));
         }
 
         div.appendChild(evalDiv);
