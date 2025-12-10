@@ -5,12 +5,12 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse, FileResponse
 from pydantic import BaseModel
-from rag_engine import RAGService
+from rag_engine import ImprovedRAGService
 
 app = FastAPI()
 
 # Initialize RAG Service
-rag_service = RAGService()
+rag_service = ImprovedRAGService()
 
 class ChatRequest(BaseModel):
     message: str
@@ -19,8 +19,8 @@ class ChatRequest(BaseModel):
     evaluate: bool = False  # Enable RAG evaluation
 
 class IngestRequest(BaseModel):
-    chunk_size: int = 1000
-    chunk_overlap: int = 200
+    chunk_size: int = 800
+    chunk_overlap: int = 150
 
 @app.get("/")
 async def read_root():

@@ -149,7 +149,9 @@ body {
 
 .delete-btn:active {
     transform: scale(0.95);
-}/* Settings Section */
+}
+
+/* Settings Section */
 .settings-section {
     margin-top: auto;
     padding-top: 1.5rem;
@@ -334,13 +336,40 @@ input[type="checkbox"] {
 .source-item {
     font-size: 0.8rem;
     color: var(--text-secondary);
-    padding: 0.25rem 0;
+    padding: 0.5rem 0;
     padding-left: 1rem;
+    border-left: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.source-item:hover {
+    border-left-color: var(--accent-color);
+    background-color: rgba(88, 166, 255, 0.05);
+    padding-left: 1.2rem;
+}
+
+.source-item strong {
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-right: 0.5rem;
 }
 
 .source-item:before {
     content: "• ";
     color: var(--accent-color);
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+/* Add numbered badges for sources */
+.source-badge {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: 600;
     margin-right: 0.5rem;
 }
 
